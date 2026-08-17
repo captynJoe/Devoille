@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5KB7YM85L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F5KB7YM85L');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account - Dévoilé Essentials</title>
+    <meta name="description" content="Dévoilé Essentials customer account page for orders, delivery preferences, saved products, and profile details." />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('devoile-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260801-admin-real" />
+    <script src="/theme.js?v=20260727-overlay3" defer></script>
+    <script src="/product-data.js?v=20260727-overlay3" defer></script>
+    <script src="/basket.js?v=20260727-overlay3" defer></script>
+    <script src="/menu.js?v=20260801-clean-login" defer></script>
+    <script src="/search.js?v=20260727-overlay3" defer></script>
+    <script src="/auth.js?v=20260801-clean-login" defer></script>
+    <script src="/footer.js?v=20260801-admin-real" defer></script>
+  </head>
+  <body data-auth-required="user">
+    <header class="site-header">
+      <button class="icon-button search-button" type="button" data-search-open aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      </button>
+      <a class="brand" href="/" aria-label="Dévoilé Essentials home"><span>Dévoilé Essentials</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/scent-room">Scent Room</a>
+        <a href="/care-journal">Care Journal</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button menu-button" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+        <a class="icon-button active-icon" href="/login" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-button basket-button" href="#basket" data-basket-open aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="8" width="12" height="13" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+      </div>
+    </header>
+
+    <main class="page-main account-main">
+      <section class="page-hero account-hero">
+        <p class="eyebrow">Customer account</p>
+        <h1>Your Dévoilé shelf, orders, and preferences.</h1>
+        <p>
+          A refined account area for delivery details, discreet packaging preferences, saved essentials, and order history. This is a visual prototype before connecting real authentication.
+        </p>
+      </section>
+
+      <section class="account-layout">
+        <aside class="account-card profile-card">
+          <div class="profile-avatar">DÉ</div>
+          <h2>Guest profile</h2>
+          <p>Sign in to manage orders, pickup details, and saved products.</p>
+          <button type="button">Log in</button>
+          <button type="button" class="quiet-button">Create account</button>
+          <a class="admin-entry" href="/admin">Admin dashboard</a>
+          <button type="button" class="quiet-button" data-logout>Log out</button>
+        </aside>
+
+        <section class="account-panel">
+          <div class="account-panel-head">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h2>Account dashboard</h2>
+            </div>
+            <span>Prototype</span>
+          </div>
+          <div class="account-grid">
+            <article><strong>Orders</strong><span>No recent orders yet.</span><a href="/shop">Start shopping</a></article>
+            <article><strong>Saved products</strong><span>Classic 250ml, Aroma 30ml, Signature Candle.</span><a href="/shop">View shop</a></article>
+            <article><strong>Delivery preference</strong><span>Discreet nationwide shipping or Nairobi CBD pickup.</span><a href="#preferences">Edit preference</a></article>
+            <article><strong>Email offers</strong><span>Exclusive restock and scent-room edit notifications.</span><a href="#newsletter">Manage email</a></article>
+          </div>
+        </section>
+      </section>
+
+      <section id="preferences" class="account-preferences">
+        <div>
+          <p class="eyebrow">Preferences</p>
+          <h2>Make privacy the default.</h2>
+        </div>
+        <form>
+          <label>Preferred fulfillment
+            <select><option>Discreet nationwide delivery</option><option>Nairobi CBD pickup</option></select>
+          </label>
+          <label>Packaging note
+            <input type="text" placeholder="Leave blank for standard discreet packaging" />
+          </label>
+          <label>Email
+            <input type="email" placeholder="you@example.com" />
+          </label>
+          <button type="button">Save preferences</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="newsletter">
+      <form class="footer-form"><label for="user-email">Private restock notes</label><p>Receive quiet restock notes, scent-room edits, and private offers.</p><div><input id="user-email" type="email" placeholder="Email" /><button type="submit">Join</button></div></form>
+      <div class="footer-meta"><span>© 2026, Dévoilé Essentials</span><span>Facebook / Instagram / TikTok</span><span>Privacy policy</span></div>
+    </footer>
+  </body>
+</html>

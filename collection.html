@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5KB7YM85L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F5KB7YM85L');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shop - Dévoilé Essentials</title>
+    <meta name="description" content="Shop Dévoilé Essentials products: aroma oils, Classic lubricants, Mint Sensation, Painless, scented candles, and more." />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('devoile-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260801-admin-real" />
+    <script src="/theme.js?v=20260727-overlay3" defer></script>
+    <script src="/product-data.js?v=20260727-overlay3" defer></script>
+    <script src="/basket.js?v=20260727-overlay3" defer></script>
+    <script src="/menu.js?v=20260801-clean-login" defer></script>
+    <script src="/search.js?v=20260727-overlay3" defer></script>
+    <script src="/auth.js?v=20260801-clean-login" defer></script>
+    <script src="/footer.js?v=20260801-admin-real" defer></script>
+    <script src="/collection.js?v=20260801-live-catalog" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <button class="icon-button search-button" type="button" data-search-open aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      </button>
+      <a class="brand" href="/" aria-label="Dévoilé Essentials home"><span>Dévoilé Essentials</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a class="active" href="/shop">Shop</a>
+        <a href="/scent-room">Scent Room</a>
+        <a href="/care-journal">Care Journal</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button menu-button" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+        <a class="icon-button" href="/login" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-button basket-button" href="#basket" data-basket-open aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="8" width="12" height="13" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+      </div>
+    </header>
+
+    <main class="page-main">
+      <section class="page-hero collection-hero">
+        <p class="eyebrow">Dévoilé shelf</p>
+        <h1>Browse the current edit.</h1>
+        <p>
+          A tighter shelf of aroma oils, amber-bottled comfort formulas, and room pieces. Choose what fits, pay securely, and keep fulfilment discreet.
+        </p>
+      </section>
+
+      <section id="products" class="catalog-layout refined-catalog">
+        <aside class="filters" aria-label="Product filters">
+          <div class="filter-title">
+            <h2>Narrow shelf</h2>
+            <button type="button" data-clear-filters>Clear</button>
+          </div>
+          <details open>
+            <summary>Availability</summary>
+            <label><input type="checkbox" data-filter="availability" value="in_stock" /> In stock</label>
+            <label><input type="checkbox" data-filter="availability" value="sale" /> Sale</label>
+            <label><input type="checkbox" data-filter="availability" value="sold_out" /> Sold out</label>
+          </details>
+          <details open>
+            <summary>Category</summary>
+            <div data-category-filters></div>
+          </details>
+          <details open>
+            <summary>Price</summary>
+            <div class="price-range" data-price-range><span>KSh 0</span><span>KSh 0</span></div>
+            <div class="range-track"><i></i></div>
+          </details>
+        </aside>
+
+        <section class="catalog-content" aria-label="Products">
+          <div class="catalog-toolbar refined-toolbar">
+            <div><span>Available edit</span><strong data-product-count>7 products</strong></div>
+            <label>Sort by
+              <select data-product-sort>
+                <option value="az">Alphabetically, A-Z</option>
+                <option value="price-low">Price, low to high</option>
+                <option value="price-high">Price, high to low</option>
+                <option value="availability">Availability</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="product-grid catalog-grid refined-product-grid" data-products-grid></div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <form class="footer-form"><label for="collection-email">Private restock notes</label><div><input id="collection-email" type="email" placeholder="Email" /><button type="submit">Join</button></div></form>
+      <div class="footer-meta"><span>© 2026, Dévoilé Essentials</span><span>Facebook / Instagram / TikTok</span><span>Privacy policy</span></div>
+    </footer>
+  </body>
+</html>

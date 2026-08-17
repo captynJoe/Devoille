@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5KB7YM85L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F5KB7YM85L');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Dévoilé Essentials</title>
+    <meta name="description" content="Dévoilé Essentials admin dashboard." />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('devoile-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260801-admin-real" />
+    <script src="/theme.js?v=20260727-overlay3" defer></script>
+    <script src="/product-data.js?v=20260727-overlay3" defer></script>
+    <script src="/admin-data.js?v=20260801-clean-login" defer></script>
+    <script src="/basket.js?v=20260727-overlay3" defer></script>
+    <script src="/menu.js?v=20260801-clean-login" defer></script>
+    <script src="/search.js?v=20260727-overlay3" defer></script>
+    <script src="/auth.js?v=20260801-clean-login" defer></script>
+    <script src="/admin-dashboard.js?v=20260801-admin-real" defer></script>
+  </head>
+  <body data-auth-required="user" class="admin-shell-page">
+    <aside class="admin-sidebar" aria-label="Admin navigation">
+      <a class="admin-sidebar-brand" href="/admin"><span>Dévoilé</span><strong>Admin</strong></a>
+      <nav class="admin-side-nav" aria-label="Admin sections">
+        <a class="active" href="/admin">Dashboard</a>
+        <a href="/admin/orders">Orders</a>
+        <a href="/admin/products">Products</a>
+        <a href="/admin/subscribers">Subscribers</a>
+        <a href="/admin/actions">Activity</a>
+        <a href="/admin/settings">Settings</a>
+      </nav>
+      <div class="admin-sidebar-foot"><a href="/">Storefront</a></div>
+    </aside>
+    <header class="site-header admin-header admin-topbar">
+      <a class="brand" href="/admin" aria-label="Dévoilé admin home"><span>Dévoilé Admin</span></a>
+      <div class="header-actions">
+        <button class="icon-button menu-button" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+        <a class="icon-button" href="/" aria-label="Back to storefront"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></a>
+      </div>
+    </header>
+
+    <main class="page-main admin-main admin-workspace">
+      <section class="admin-page-title"><p class="eyebrow">Admin</p><h1>Dashboard</h1></section>
+      <section class="admin-stats" aria-label="Store metrics">
+        <article><span>Sales</span><strong data-dashboard-revenue>KSh 0</strong></article>
+        <article><span>Orders</span><strong data-dashboard-orders>0</strong></article>
+        <article><span>Products</span><strong data-dashboard-products>0</strong></article>
+        <article><span>Low stock</span><strong data-dashboard-low-stock>0</strong></article>
+        <article><span>Activity</span><strong data-dashboard-actions>0</strong></article>
+      </section>
+      <section class="admin-dashboard-grid">
+        <article class="admin-section"><div class="admin-section-head"><div><p class="eyebrow">Inventory</p><h2>Low stock</h2></div></div><div class="admin-list" data-dashboard-low-stock-list></div></article>
+        <article class="admin-section"><div class="admin-section-head"><div><p class="eyebrow">Orders</p><h2>Recent orders</h2></div></div><div class="admin-list" data-dashboard-recent-orders></div></article>
+      </section>
+      <section class="admin-section admin-route-grid admin-route-grid-compact" aria-label="Admin shortcuts">
+        <a href="/admin/products"><span>Products</span><strong>Catalog</strong></a>
+        <a href="/admin/orders"><span>Orders</span><strong>Fulfillment</strong></a>
+        <a href="/admin/subscribers"><span>Subscribers</span><strong>Email list</strong></a>
+        <a href="/admin/actions"><span>Activity</span><strong>Audit log</strong></a>
+        <a href="/admin/settings"><span>Settings</span><strong>Storefront</strong></a>
+      </section>
+    </main>
+  </body>
+</html>

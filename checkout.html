@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5KB7YM85L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F5KB7YM85L');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout - Dévoilé Essentials</title>
+    <meta name="description" content="Secure Dévoilé Essentials checkout with M-PESA payment, discreet delivery, and Nairobi CBD pickup options." />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('devoile-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260801-admin-real" />
+    <script src="/theme.js?v=20260727-overlay3" defer></script>
+    <script src="/product-data.js?v=20260727-overlay3" defer></script>
+    <script src="/menu.js?v=20260801-clean-login" defer></script>
+    <script src="/search.js?v=20260727-overlay3" defer></script>
+    <script src="/auth.js?v=20260801-clean-login" defer></script>
+    <script src="/footer.js?v=20260801-admin-real" defer></script>
+    <script src="/checkout.js?v=20260817-mpesa" defer></script>
+  </head>
+  <body>
+    <header class="site-header checkout-header">
+      <button class="icon-button search-button" type="button" data-search-open aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      </button>
+      <a class="brand" href="/" aria-label="Dévoilé Essentials home"><span>Dévoilé Essentials</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/scent-room">Scent Room</a>
+        <a href="/care-journal">Care Journal</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button menu-button" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+        <a class="icon-button" href="/shop" aria-label="Back to shop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></a>
+      </div>
+    </header>
+
+    <main class="page-main checkout-page-main">
+      <section class="checkout-hero" aria-labelledby="checkout-heading">
+        <p class="eyebrow">Private order desk</p>
+        <h1 id="checkout-heading">Confirm your Dévoilé order.</h1>
+        <p>Review the shelf items, choose discreet delivery or Nairobi CBD pickup, then pay with M-PESA or PesaPal.</p>
+      </section>
+
+      <section class="checkout-page" aria-label="Checkout">
+        <div class="checkout-panel checkout-summary-panel">
+          <div class="checkout-section-head">
+            <p class="eyebrow">Your selection</p>
+            <h2>Order tray</h2>
+          </div>
+          <div class="checkout-lines" data-checkout-lines></div>
+          <div class="checkout-total-row"><span>Subtotal</span><strong data-checkout-total>KSh 0</strong></div>
+          <p class="checkout-note">Delivery fee, pickup timing, and any special packaging notes are confirmed directly after payment.</p>
+        </div>
+
+        <form class="checkout-panel checkout-form-panel" data-checkout-page-form>
+          <div class="checkout-section-head">
+            <p class="eyebrow">Payment details</p>
+            <h2>Where should we reach you?</h2>
+          </div>
+          <div class="checkout-form-grid">
+            <label>Full name<input name="name" type="text" autocomplete="name" required placeholder="Your name" /></label>
+            <label>Phone<input name="phone" type="tel" autocomplete="tel" placeholder="07..." /></label>
+            <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@example.com" /></label>
+            <label>Fulfillment<select name="fulfillment"><option>Discreet delivery</option><option>Nairobi CBD pickup</option></select></label>
+          </div>
+          <fieldset class="payment-methods">
+            <legend>Payment method</legend>
+            <label class="payment-option"><input type="radio" name="payment_method" value="mpesa" checked /><span><strong>M-PESA STK push</strong><small>Use the phone number above to receive the payment prompt.</small></span></label>
+            <label class="payment-option"><input type="radio" name="payment_method" value="pesapal" /><span><strong>PesaPal hosted payment</strong><small>Use PesaPal for alternate mobile money or card options.</small></span></label>
+          </fieldset>
+          <div class="checkout-assurance">
+            <article><span>01</span><strong>M-PESA first</strong><p>The payment prompt is sent to your Safaricom phone after this page.</p></article>
+            <article><span>02</span><strong>Plain handoff</strong><p>Pickup and delivery communication stays simple, private, and direct.</p></article>
+          </div>
+          <p data-checkout-page-error class="checkout-error" hidden></p>
+          <button type="submit" data-checkout-page-submit>Continue to secure payment</button>
+          <a class="checkout-return" href="/shop">Add more from the shelf</a>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-meta"><span>© 2026, Dévoilé Essentials</span><span>Discreet Nairobi fulfilment</span><span>Secure payment by M-PESA and PesaPal</span></div>
+    </footer>
+  </body>
+</html>

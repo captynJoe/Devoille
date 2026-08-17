@@ -1,0 +1,39 @@
+services:
+  devoile-site:
+    build: .
+    container_name: devoile_essentials_site
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8090:80"
+    environment:
+      PORT: "80"
+      DEVOILE_DATA_DIR: /data
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI:-http://84.247.174.52:8090/api/auth/google/callback}
+      DEVOILE_PUBLIC_BASE_URL: ${DEVOILE_PUBLIC_BASE_URL:-http://84.247.174.52:8090}
+      DEVOILE_COOKIE_SECURE: ${DEVOILE_COOKIE_SECURE:-0}
+      PESAPAL_IPN_ID: ${PESAPAL_IPN_ID:-}
+      PESAPAL_CONSUMER_SECRET: ${PESAPAL_CONSUMER_SECRET:-}
+      PESAPAL_CONSUMER_KEY: ${PESAPAL_CONSUMER_KEY:-}
+      PESAPAL_ENVIRONMENT: ${PESAPAL_ENVIRONMENT:-live}
+      MPESA_ENVIRONMENT: ${MPESA_ENVIRONMENT:-sandbox}
+      MPESA_CONSUMER_KEY: ${MPESA_CONSUMER_KEY:-}
+      MPESA_CONSUMER_SECRET: ${MPESA_CONSUMER_SECRET:-}
+      MPESA_BUSINESS_SHORT_CODE: ${MPESA_BUSINESS_SHORT_CODE:-}
+      MPESA_PASSKEY: ${MPESA_PASSKEY:-}
+      MPESA_CALLBACK_URL: ${MPESA_CALLBACK_URL:-}
+      MPESA_TRANSACTION_TYPE: ${MPESA_TRANSACTION_TYPE:-CustomerPayBillOnline}
+      MPESA_ACCOUNT_REFERENCE: ${MPESA_ACCOUNT_REFERENCE:-Devoille}
+      MPESA_PARTY_B: ${MPESA_PARTY_B:-}
+    volumes:
+      - devoile-data:/data
+    cpus: ${DEVOILE_SITE_CPUS:-0.20}
+    mem_limit: ${DEVOILE_SITE_MEM_LIMIT:-128m}
+    memswap_limit: ${DEVOILE_SITE_MEMSWAP_LIMIT:-192m}
+    mem_reservation: ${DEVOILE_SITE_MEM_RESERVATION:-64m}
+
+volumes:
+  devoile-data:

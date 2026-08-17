@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F5KB7YM85L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F5KB7YM85L');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Log in - Dévoilé Essentials</title>
+    <meta name="description" content="Log in to Dévoilé Essentials to manage orders, delivery preferences, saved products, and admin access." />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('devoile-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+        } catch (error) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260801-admin-real" />
+    <script src="/theme.js?v=20260727-overlay3" defer></script>
+    <script src="/product-data.js?v=20260727-overlay3" defer></script>
+    <script src="/basket.js?v=20260727-overlay3" defer></script>
+    <script src="/menu.js?v=20260801-clean-login" defer></script>
+    <script src="/search.js?v=20260727-overlay3" defer></script>
+    <script src="/auth.js?v=20260801-clean-login" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <button class="icon-button search-button" type="button" data-search-open aria-label="Search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.2 16.2 4.3 4.3"/></svg>
+      </button>
+      <a class="brand" href="/" aria-label="Dévoilé Essentials home"><span>Dévoilé Essentials</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/scent-room">Scent Room</a>
+        <a href="/care-journal">Care Journal</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button menu-button" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
+        <a class="icon-button active-icon" href="/login" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-button basket-button" href="#basket" data-basket-open aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="8" width="12" height="13" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+      </div>
+    </header>
+
+    <main class="page-main login-main refined-login-main">
+      <section class="login-shell refined-login-shell">
+        <div class="login-copy refined-login-copy">
+          <p class="eyebrow">Private access</p>
+          <h1>Welcome back.</h1>
+          <p>Manage the Dévoilé shelf, customer orders, delivery notes, and storefront settings from one private workspace.</p>
+          <div class="login-proof-strip" aria-label="Private workspace details">
+            <span>Admin tools</span>
+            <span>Order records</span>
+            <span>Store settings</span>
+          </div>
+        </div>
+        <form class="login-card refined-login-card" data-login-form>
+          <div class="login-card-head">
+            <p class="eyebrow">Account</p>
+            <h2>Sign in</h2>
+          </div>
+          <a class="google-login-button refined-google-button" href="/api/auth/google">
+            <span aria-hidden="true">G</span>
+            Continue with Google
+          </a>
+          <div class="login-divider"><span>or use email</span></div>
+          <label>Email
+            <input name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+          </label>
+          <label>Password
+            <input name="password" type="password" placeholder="Enter password" autocomplete="current-password" required />
+          </label>
+          <button type="submit">Log in</button>
+          <p class="login-note">Use the admin account to open orders, products, subscribers, actions, and settings.</p>
+          <p class="login-error" data-login-error></p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
