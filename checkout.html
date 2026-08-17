@@ -12,7 +12,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Checkout - Dévoilé Essentials</title>
-    <meta name="description" content="Secure Dévoilé Essentials checkout with M-PESA payment, discreet delivery, and Nairobi CBD pickup options." />
+    <meta name="description" content="Secure Dévoilé Essentials checkout with PesaPal payment, discreet delivery, and Nairobi CBD pickup options." />
     <script>
       (function () {
         try {
@@ -29,7 +29,7 @@
     <script src="/search.js?v=20260727-overlay3" defer></script>
     <script src="/auth.js?v=20260801-clean-login" defer></script>
     <script src="/footer.js?v=20260801-admin-real" defer></script>
-    <script src="/checkout.js?v=20260817-mpesa" defer></script>
+    <script src="/checkout.js?v=20260817-pesapal-only" defer></script>
   </head>
   <body>
     <header class="site-header checkout-header">
@@ -53,7 +53,7 @@
       <section class="checkout-hero" aria-labelledby="checkout-heading">
         <p class="eyebrow">Private order desk</p>
         <h1 id="checkout-heading">Confirm your Dévoilé order.</h1>
-        <p>Review the shelf items, choose discreet delivery or Nairobi CBD pickup, then pay with M-PESA or PesaPal.</p>
+        <p>Review the shelf items, choose discreet delivery or Nairobi CBD pickup, then pay securely with PesaPal.</p>
       </section>
 
       <section class="checkout-page" aria-label="Checkout">
@@ -80,11 +80,10 @@
           </div>
           <fieldset class="payment-methods">
             <legend>Payment method</legend>
-            <label class="payment-option"><input type="radio" name="payment_method" value="mpesa" checked /><span><strong>M-PESA STK push</strong><small>Use the phone number above to receive the payment prompt.</small></span></label>
-            <label class="payment-option"><input type="radio" name="payment_method" value="pesapal" /><span><strong>PesaPal hosted payment</strong><small>Use PesaPal for alternate mobile money or card options.</small></span></label>
+            <label class="payment-option"><input type="radio" name="payment_method" value="pesapal" checked /><span><strong>PesaPal hosted payment</strong><small>Pay by M-PESA, card, or mobile money on PesaPal's secure page.</small></span></label>
           </fieldset>
           <div class="checkout-assurance">
-            <article><span>01</span><strong>M-PESA first</strong><p>The payment prompt is sent to your Safaricom phone after this page.</p></article>
+            <article><span>01</span><strong>Secure handoff</strong><p>You're moved to PesaPal's hosted page to complete payment.</p></article>
             <article><span>02</span><strong>Plain handoff</strong><p>Pickup and delivery communication stays simple, private, and direct.</p></article>
           </div>
           <p data-checkout-page-error class="checkout-error" hidden></p>
@@ -95,7 +94,7 @@
     </main>
 
     <footer class="site-footer">
-      <div class="footer-meta"><span>© 2026, Dévoilé Essentials</span><span>Discreet Nairobi fulfilment</span><span>Secure payment by M-PESA and PesaPal</span></div>
+      <div class="footer-meta"><span>© 2026, Dévoilé Essentials</span><span>Discreet Nairobi fulfilment</span><span>Secure payment by PesaPal</span></div>
     </footer>
   </body>
 </html>

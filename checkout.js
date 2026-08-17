@@ -54,14 +54,10 @@
     saveBasket(basket);
     render();
   }
-  function selectedPaymentMethod(form) {
-    var checked = form.querySelector('input[name="payment_method"]:checked');
-    return checked ? checked.value : 'mpesa';
-  }
   function updateSubmitText(form) {
     var button = document.querySelector('[data-checkout-page-submit]');
     if (!button || button.disabled) return;
-    button.textContent = selectedPaymentMethod(form) === 'mpesa' ? 'Send M-PESA prompt' : 'Continue to secure payment';
+    button.textContent = 'Continue to secure payment';
   }
   function submit(form) {
     var lines = activeLines();
@@ -69,13 +65,11 @@
     var data = new FormData(form);
     var email = String(data.get('email') || '').trim();
     var phone = String(data.get('phone') || '').trim();
-    var paymentMethod = selectedPaymentMethod(form);
     if (!email && !phone) { setError('Enter an email address or phone number so we can confirm the order.'); return; }
-    if (paymentMethod === 'mpesa' && !phone) { setError('Enter the Safaricom phone number that should receive the M-PESA prompt.'); return; }
     var button = document.querySelector('[data-checkout-page-submit]');
     setError('');
-    if (button) { button.disabled = true; button.textContent = paymentMethod === 'mpesa' ? 'Sending M-PESA prompt...' : 'Opening secure payment...'; }
-    fetch(paymentMethod === 'mpesa' ? '/api/checkout/mpesa' : '/api/checkout/pesapal', {
+    if (button) { button.disabled = true; button.textContent = 'Opening secure payment...'; }
+    fetch('/api/checkout/pesapal', {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
@@ -85,7 +79,6 @@
           name: String(data.get('name') || '').trim(),
           email: email,
           phone: phone,
-          mpesaPhone: phone,
           fulfillment: String(data.get('fulfillment') || 'Discreet delivery')
         }
       })
@@ -95,7 +88,7 @@
         if (body.redirect_url) { location.href = body.redirect_url; return; }
         if (body.status_url) { location.href = body.status_url; return; }
         if (body.order_id) { location.href = '/payment-status?' + new URLSearchParams({ orderId: body.order_id }).toString(); return; }
-        throw new Error(paymentMethod === 'mpesa' ? 'M-PESA did not return a checkout request.' : 'PesaPal did not return a payment page.');
+        throw new Error('PesaPal did not return a payment page.');
       })
       .catch(function (error) { setError(error.message || 'Checkout failed.'); if (button) { button.disabled = false; updateSubmitText(form); } });
   }
