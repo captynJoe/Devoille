@@ -79,6 +79,7 @@
   function openCheckout() {
     renderBasket();
     if (!basketPayload().length) return;
+    ensureCheckoutModal();
       var shell = document.querySelector('.checkout-modal-shell');
     var modal = document.querySelector('[data-checkout-modal]');
     if (shell) shell.hidden = false;
@@ -244,6 +245,7 @@
 
   window.addEventListener('devoile-products-updated', renderBasket);
   ensureDrawer();
+  ensureCheckoutModal();
   renderBasket();
 
   window.DevoileBasket = {
