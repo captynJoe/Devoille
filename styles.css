@@ -2995,7 +2995,10 @@ html[data-theme="dark"] .lab-faq-list article {
   cursor: pointer;
 }
 .checkout-modal button[type="submit"]:disabled {
-  opacity: .7;
+  background: #ecd7c7;
+  color: #2f201b;
+  border: 1px solid rgba(58, 38, 32, .18);
+  box-shadow: none;
   cursor: default;
 }
 .checkout-error {
@@ -3300,7 +3303,10 @@ html[data-theme="dark"] .crop-modal {
   cursor: pointer;
 }
 .checkout-form-panel button[type="submit"]:disabled {
-  opacity: .66;
+  background: #ecd7c7;
+  color: #2f201b;
+  border: 1px solid rgba(58, 38, 32, .18);
+  box-shadow: none;
   cursor: default;
 }
 .checkout-return,
