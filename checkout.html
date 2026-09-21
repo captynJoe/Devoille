@@ -12,7 +12,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Checkout - Dévoilé Essentials</title>
-    <meta name="description" content="Secure Dévoilé Essentials checkout with PesaPal payment, discreet delivery, and Nairobi CBD pickup options." />
+    <meta name="description" content="Secure Dévoilé Essentials checkout. Pay with card or M-Pesa, choose discreet delivery or Nairobi CBD pickup." />
     <script>
       (function () {
         try {
@@ -29,7 +29,7 @@
     <script src="/search.js?v=20260727-overlay3" defer></script>
     <script src="/auth.js?v=20260801-clean-login" defer></script>
     <script src="/footer.js?v=20260801-admin-real" defer></script>
-    <script src="/checkout.js?v=20260817-pesapal-only" defer></script>
+    <script src="/checkout.js?v=20260818-pesapal-errors" defer></script>
   </head>
   <body>
     <header class="site-header checkout-header">
@@ -50,27 +50,24 @@
     </header>
 
     <main class="page-main checkout-page-main">
-      <section class="checkout-hero" aria-labelledby="checkout-heading">
-        <p class="eyebrow">Private order desk</p>
-        <h1 id="checkout-heading">Confirm your Dévoilé order.</h1>
-        <p>Review the shelf items, choose discreet delivery or Nairobi CBD pickup, then pay securely with PesaPal.</p>
+      <section class="checkout-topbar">
+        <a class="checkout-back" href="/shop" aria-label="Back to shop">&larr; Shop</a>
+        <h1 id="checkout-heading">Checkout</h1>
       </section>
 
       <section class="checkout-page" aria-label="Checkout">
         <div class="checkout-panel checkout-summary-panel">
           <div class="checkout-section-head">
-            <p class="eyebrow">Your selection</p>
-            <h2>Order tray</h2>
+            <h2>Order summary</h2>
           </div>
           <div class="checkout-lines" data-checkout-lines></div>
           <div class="checkout-total-row"><span>Subtotal</span><strong data-checkout-total>KSh 0</strong></div>
-          <p class="checkout-note">Delivery fee, pickup timing, and any special packaging notes are confirmed directly after payment.</p>
+          <p class="checkout-note">Delivery details are confirmed after payment.</p>
         </div>
 
         <form class="checkout-panel checkout-form-panel" data-checkout-page-form>
           <div class="checkout-section-head">
-            <p class="eyebrow">Payment details</p>
-            <h2>Where should we reach you?</h2>
+            <h2>Contact &amp; delivery</h2>
           </div>
           <div class="checkout-form-grid">
             <label>Full name<input name="name" type="text" autocomplete="name" required placeholder="Your name" /></label>
@@ -79,22 +76,18 @@
             <label>Fulfillment<select name="fulfillment"><option>Discreet delivery</option><option>Nairobi CBD pickup</option></select></label>
           </div>
           <fieldset class="payment-methods">
-            <legend>Payment method</legend>
-            <label class="payment-option"><input type="radio" name="payment_method" value="pesapal" checked /><span><strong>PesaPal hosted payment</strong><small>Pay by M-PESA, card, or mobile money on PesaPal's secure page.</small></span></label>
+            <legend>Payment</legend>
+            <label class="payment-option"><input type="radio" name="payment_method" value="pesapal" checked /><span><strong>Pay with Card or M-Pesa</strong><small>Secure, encrypted checkout.</small></span></label>
           </fieldset>
-          <div class="checkout-assurance">
-            <article><span>01</span><strong>Secure handoff</strong><p>You're moved to PesaPal's hosted page to complete payment.</p></article>
-            <article><span>02</span><strong>Plain handoff</strong><p>Pickup and delivery communication stays simple, private, and direct.</p></article>
-          </div>
           <p data-checkout-page-error class="checkout-error" hidden></p>
-          <button type="submit" data-checkout-page-submit>Continue to secure payment</button>
-          <a class="checkout-return" href="/shop">Add more from the shelf</a>
+          <button type="submit" data-checkout-page-submit>Continue to payment</button>
+          <a class="checkout-return" href="/shop">Continue shopping</a>
         </form>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="footer-meta"><span>© 2026, Dévoilé Essentials</span><span>Discreet Nairobi fulfilment</span><span>Secure payment by PesaPal</span></div>
+      <div class="footer-meta"><span>© 2026, Dévoilé Essentials</span><span>Discreet Nairobi fulfilment</span><span>Secure payment</span></div>
     </footer>
   </body>
 </html>

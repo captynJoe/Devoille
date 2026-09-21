@@ -478,6 +478,50 @@ def return_target_from_state(state):
         return "/account"
 
 
+def provider_error_message(data, default="Provider request failed"):
+    if not isinstance(data, dict):
+        return default
+    for key in ("message", "Message", "error_message", "errorMessage", "status_message", "statusMessage"):
+        value = data.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    error = data.get("error")
+    if isinstance(error, dict):
+        for key in ("message", "Message", "description", "error_description", "errorMessage"):
+            value = error.get(key)
+            if isinstance(value, str) and value.strip():
+                return value.strip()
+    elif isinstance(error, str) and error.strip():
+        return error.strip()
+    return default
+
+
+def pesapal_checkout_url(response):
+    if not isinstance(response, dict):
+        return ""
+    for key in ("redirect_url", "redirectUrl", "payment_url", "paymentUrl", "iframe_src", "iframeSrc"):
+        value = response.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return ""
+
+
+def provider_log_payload(data):
+    if not isinstance(data, dict):
+        return {"response_type": type(data).__name__}
+    allowed = {}
+    for key, value in data.items():
+        if key.lower() in {"token", "consumer_key", "consumer_secret", "authorization"}:
+            continue
+        if isinstance(value, (str, int, float, bool)) or value is None:
+            allowed[key] = value
+        elif isinstance(value, dict):
+            allowed[key] = provider_log_payload(value)
+        else:
+            allowed[key] = str(value)[:300]
+    return allowed
+
+
 def json_http_request(url, payload=None, headers=None, method=None, timeout=25):
     body = None if payload is None else json.dumps(payload).encode("utf-8")
     req = urllib.request.Request(url, data=body, method=method or ("POST" if payload is not None else "GET"))
@@ -493,8 +537,7 @@ def json_http_request(url, payload=None, headers=None, method=None, timeout=25):
             data = json.loads(raw) if raw else {}
         except json.JSONDecodeError:
             data = {"message": raw}
-        message = data.get("message") or (data.get("error") or {}).get("message") or f"HTTP {exc.code}"
-        raise RuntimeError(message)
+        raise RuntimeError(provider_error_message(data, f"HTTP {exc.code}"))
 
 
 def pesapal_headers(token=None):
@@ -625,6 +668,22 @@ def normalize_contact(value):
     return str(value or "").strip()
 
 
+def normalize_checkout_phone(value):
+    raw = normalize_contact(value)
+    if not raw:
+        return ""
+    digits = "".join(ch for ch in raw if ch.isdigit())
+    if digits.startswith("00"):
+        digits = digits[2:]
+    if digits.startswith("254") and len(digits) == 12 and digits[3] in ("1", "7"):
+        return digits
+    if len(digits) == 10 and digits.startswith("0") and digits[1] in ("1", "7"):
+        return "254" + digits[1:]
+    if len(digits) == 9 and digits[0] in ("1", "7"):
+        return "254" + digits
+    raise ValueError("Enter a valid Kenyan phone number, e.g. 0712345678")
+
+
 def save_subscriber(conn, payload):
     email = normalize_contact(payload.get("email") if isinstance(payload, dict) else "").lower()
     source = normalize_contact(payload.get("source") if isinstance(payload, dict) else "footer")[:80] or "footer"
@@ -655,7 +714,8 @@ def build_checkout_order(payload):
     customer = payload.get("customer") if isinstance(payload.get("customer"), dict) else {}
     name = normalize_contact(customer.get("name"))
     email = normalize_contact(customer.get("email")).lower()
-    phone = normalize_contact(customer.get("phone"))
+    raw_phone = normalize_contact(customer.get("phone"))
+    phone = normalize_checkout_phone(raw_phone) if raw_phone else ""
     if not email and not phone:
         raise ValueError("Enter an email address or phone number for payment")
     fulfillment = normalize_contact(customer.get("fulfillment")) or "Discreet delivery"
@@ -1169,6 +1229,7 @@ class Handler(SimpleHTTPRequestHandler):
                     "description": order_description(order),
                     "callback_url": public_base_url() + "/payment-status",
                     "cancellation_url": public_base_url() + "/shop",
+                    "redirect_mode": "TOP_WINDOW",
                     "notification_id": pesapal_ipn_id(),
                     "branch": "Dévoilé Essentials",
                     "billing_address": {
@@ -1187,12 +1248,18 @@ class Handler(SimpleHTTPRequestHandler):
                     }
                 }
                 response = json_http_request(pesapal_base_url() + "/api/Transactions/SubmitOrderRequest", request_payload, pesapal_headers(token))
-                if not response.get("redirect_url"):
-                    raise RuntimeError(response.get("message") or "PesaPal did not return a checkout URL")
+                status_code = str(response.get("status") or "").strip()
+                if response.get("error") or (status_code and status_code != "200"):
+                    raise RuntimeError(provider_error_message(response, "PesaPal rejected the checkout request"))
+                redirect_url = pesapal_checkout_url(response)
+                if not redirect_url:
+                    print("PESAPAL_MISSING_REDIRECT " + json.dumps(provider_log_payload(response), ensure_ascii=False), flush=True)
+                    raise RuntimeError(provider_error_message(response, "PesaPal accepted the order but did not return a checkout URL. Please try again."))
+                response = {**response, "redirect_url": redirect_url}
                 with db() as conn:
                     save_checkout_order(conn, order, response, status="Payment pending", provider="pesapal")
                     record_action(conn, "checkout", "submit", "checkout_order", order["id"], {"provider": "pesapal", "total": order["total"]})
-                self.send_json({"redirect_url": response.get("redirect_url"), "merchant_reference": order["id"], "order_tracking_id": response.get("order_tracking_id")})
+                self.send_json({"redirect_url": redirect_url, "merchant_reference": order["id"], "order_tracking_id": response.get("order_tracking_id")})
             except (ValueError, TypeError, json.JSONDecodeError, RuntimeError) as exc:
                 self.send_json({"error": str(exc)}, 400)
             return

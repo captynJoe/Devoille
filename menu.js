@@ -18,8 +18,7 @@
           ['Scent Room', '/scent-room'],
           ['Care Journal', '/care-journal'],
           ['Checkout', '/checkout'],
-          ['Account', '/account'],
-          ['Admin', '/admin']
+          ['Account', '/account']
         ];
     var shell = document.createElement('div');
     shell.className = 'mobile-menu-shell';

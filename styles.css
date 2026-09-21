@@ -2749,7 +2749,6 @@ html[data-theme="dark"] .admin-main {
   .home-hero h1 { font-size: clamp(42px, 13vw, 62px); }
   .admin-stats, .admin-route-grid { grid-template-columns: 1fr; }
   .page-hero h1 { font-size: clamp(34px, 9vw, 48px); }
-  .checkout-hero h1 { font-size: clamp(34px, 9vw, 48px); }
   .lab-landing-hero h1 { font-size: clamp(34px, 9vw, 48px); }
   .admin-hero h1 { font-size: clamp(34px, 9vw, 48px); }
 }
@@ -3144,23 +3143,32 @@ html[data-theme="dark"] .crop-modal {
 .checkout-page-main {
   background: linear-gradient(180deg, rgba(168,103,52,.08), transparent 440px);
 }
-.checkout-hero {
+.checkout-topbar {
   width: min(100% - 32px, 1180px);
   margin: 0 auto;
-  padding: 92px 0 34px;
+  padding: 40px 0 22px;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
 }
-.checkout-hero h1 {
-  max-width: 900px;
+.checkout-topbar h1 {
+  margin: 0;
+  max-width: none;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
   color: var(--cocoa);
-  font-size: clamp(48px, 7vw, 88px);
-  line-height: .96;
 }
-.checkout-hero p:last-child {
-  max-width: 720px;
-  margin-top: 20px;
+.checkout-back {
   color: var(--muted);
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
+}
+.checkout-back:hover {
+  color: var(--cocoa);
 }
 .checkout-page {
   width: min(100% - 32px, 1180px);
@@ -3181,9 +3189,9 @@ html[data-theme="dark"] .crop-modal {
   margin-bottom: 20px;
 }
 .checkout-section-head h2 {
-  margin-top: 7px;
+  margin-top: 0;
   color: var(--cocoa);
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(20px, 2.4vw, 26px);
 }
 .checkout-lines {
   display: grid;
@@ -3217,8 +3225,7 @@ html[data-theme="dark"] .crop-modal {
 }
 .checkout-line-copy span,
 .checkout-note,
-.checkout-empty p,
-.checkout-assurance p {
+.checkout-empty p {
   color: var(--muted);
 }
 .checkout-line-controls {
@@ -3281,34 +3288,6 @@ html[data-theme="dark"] .crop-modal {
   background: white;
   padding: 0 13px;
   color: var(--cocoa);
-}
-.checkout-assurance {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin: 18px 0;
-}
-.checkout-assurance article {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255,255,255,.56);
-  padding: 16px;
-}
-.checkout-assurance span {
-  color: var(--amber);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .12em;
-}
-.checkout-assurance strong {
-  display: block;
-  margin-top: 12px;
-  color: var(--cocoa);
-}
-.checkout-assurance p {
-  margin-top: 7px;
-  line-height: 1.55;
-  font-size: 13px;
 }
 .checkout-form-panel button[type="submit"] {
   width: 100%;
@@ -3384,7 +3363,6 @@ html[data-theme="dark"] .crop-modal {
   line-height: 1.45;
 }
 html[data-theme="dark"] .checkout-panel,
-html[data-theme="dark"] .checkout-assurance article,
 html[data-theme="dark"] .checkout-form-panel input,
 html[data-theme="dark"] .checkout-form-panel select,
 html[data-theme="dark"] .checkout-line-controls button,
@@ -3395,8 +3373,7 @@ html[data-theme="dark"] .payment-option {
   .checkout-page { grid-template-columns: 1fr; }
 }
 @media (max-width: 620px) {
-  .checkout-form-grid,
-  .checkout-assurance { grid-template-columns: 1fr; }
+  .checkout-form-grid { grid-template-columns: 1fr; }
   .payment-option { grid-template-columns: 18px minmax(0, 1fr); }
   .checkout-line { grid-template-columns: 76px minmax(0, 1fr); }
   .checkout-line-total { grid-column: 2; }
@@ -3733,6 +3710,47 @@ html[data-theme="dark"] .footer-social-links a:hover,
 html[data-theme="dark"] .footer-meta > a:hover,
 html[data-theme="dark"] .admin-inline-link:hover {
   color: #fff;
+}
+
+/* Storefront readability pass - 2026-09-21 */
+:root {
+  --storefront-display-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.site-header:not(.admin-header) .brand,
+.home-hero h1,
+.page-hero h1,
+.product-focus h2,
+.lubes-grid h3,
+.mobile-menu-head h2,
+.mobile-menu-nav a {
+  font-family: var(--storefront-display-font);
+  letter-spacing: 0;
+}
+.home-hero h1 {
+  max-width: 720px;
+  font-weight: 850;
+  line-height: 1.02;
+}
+.home-hero .hero-copy {
+  max-width: 600px;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.68;
+  color: rgba(247,242,236,.9);
+}
+.mobile-menu-nav a {
+  font-size: 20px;
+  font-weight: 850;
+  line-height: 1.2;
+}
+@media (max-width: 720px) {
+  .home-hero h1 {
+    font-size: clamp(40px, 12vw, 56px);
+    line-height: 1.04;
+  }
+  .home-hero .hero-copy {
+    font-size: 16px;
+    line-height: 1.62;
+  }
 }
 
 /* Refined login surface */

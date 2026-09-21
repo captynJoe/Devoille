@@ -54,6 +54,16 @@
     saveBasket(basket);
     render();
   }
+  function normalizePhone(value) {
+    var raw = String(value || '').trim();
+    if (!raw) return '';
+    var digits = raw.replace(/\D/g, '');
+    if (digits.indexOf('00') === 0) digits = digits.slice(2);
+    if (digits.indexOf('254') === 0 && digits.length === 12 && /[17]/.test(digits.charAt(3))) return digits;
+    if (digits.length === 10 && digits.charAt(0) === '0' && /[17]/.test(digits.charAt(1))) return '254' + digits.slice(1);
+    if (digits.length === 9 && /[17]/.test(digits.charAt(0))) return '254' + digits;
+    return null;
+  }
   function updateSubmitText(form) {
     var button = document.querySelector('[data-checkout-page-submit]');
     if (!button || button.disabled) return;
@@ -65,7 +75,9 @@
     var data = new FormData(form);
     var email = String(data.get('email') || '').trim();
     var phone = String(data.get('phone') || '').trim();
-    if (!email && !phone) { setError('Enter an email address or phone number so we can confirm the order.'); return; }
+    var normalizedPhone = normalizePhone(phone);
+    if (phone && normalizedPhone === null) { setError('Enter a valid Kenyan phone number, e.g. 0712345678.'); return; }
+    if (!email && !normalizedPhone) { setError('Enter an email address or phone number so we can confirm the order.'); return; }
     var button = document.querySelector('[data-checkout-page-submit]');
     setError('');
     if (button) { button.disabled = true; button.textContent = 'Opening secure payment...'; }
@@ -78,7 +90,7 @@
         customer: {
           name: String(data.get('name') || '').trim(),
           email: email,
-          phone: phone,
+          phone: normalizedPhone || '',
           fulfillment: String(data.get('fulfillment') || 'Discreet delivery')
         }
       })
